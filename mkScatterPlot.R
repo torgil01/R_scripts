@@ -7,6 +7,8 @@ require(scales)
 x <- dat[[X.var]]
 y <- dat[[Y.var]]
 
+x.lim <-c(-2,3)
+
 m <- lm(y ~ x)
 a <- signif(coef(m)[1], digits = 2)
 b <- signif(coef(m)[2], digits = 2)
@@ -15,10 +17,10 @@ textlab <- paste("r^2 ==", r2, sep="")
 #print(textlab)
 theme_set(theme_bw(24))
 # where to place the text 
-p.x <- max(x)*0.92
+p.x <- max(x)
 preds <- data.frame(x=p.x)
-label.y <- predict(m,newdata=preds)*0.98
-label.x <- p.x
+label.y <- predict(m,newdata=preds)
+label.x <- p.x*0.75
 sc.plot <- ggplot(dat, aes_string(x = X.var, y = Y.var , colour= "Group")) +
  geom_point(size = 4)
 sc.plot + geom_abline(intercept = a, slope = b, colour = "blue", size = 1) +  
@@ -34,6 +36,7 @@ sc.plot + geom_abline(intercept = a, slope = b, colour = "blue", size = 1) +
 				axis.title.y = element_text(size=16)) +
 	scale_color_discrete(breaks=c("1", "2"),
 											labels=c("Control", "AD")) + 
+	scale_x_continuous(limits = x.lim) +
 	scale_y_continuous(labels=function(x)format(x*yscale,nsmall=2))
 }
 
