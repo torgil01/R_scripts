@@ -11,7 +11,7 @@ sstats.males <- data.frame(method=character(N), mean=numeric(N), std=numeric(N),
 
 sstats.females <- data.frame(method=character(N), mean=numeric(N), std=numeric(N),
                          minval=numeric(N), maxval=numeric(N), stringsAsFactors=FALSE)
-
+# new comment
 
 # stats for whole dataset
   for (k in 1:length(vars)){
